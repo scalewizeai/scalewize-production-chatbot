@@ -31,6 +31,16 @@ const App = () => {
         }
       },
     }),
+    defaultOptions: {
+      queries: {
+        // STEP 3: Reduce query invalidations that might cause iframe refresh
+        refetchOnWindowFocus: false, // Don't refetch on focus (major iframe issue)
+        refetchOnMount: false, // Don't refetch on mount if we have cached data
+        staleTime: 2 * 60 * 1000, // Consider fresh for 2 minutes
+        cacheTime: 10 * 60 * 1000, // Keep in cache for 10 minutes
+        retry: 1, // Fewer retries for faster loading
+      },
+    },
   });
 
   return (
